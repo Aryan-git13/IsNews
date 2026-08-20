@@ -1,0 +1,10 @@
+{
+  "name": "fakenewsdetection-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:client": "npm run dev --prefix client",
+    "build:client": "npm run build --prefix client",
+    "preview:client": "npm run preview --prefix client"
+  }
+}
