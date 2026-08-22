@@ -20,6 +20,7 @@ import {
   ProgressIndicator, 
   ComprehensiveAgentStatus, 
   SourceList, 
+  VerificationFeedback,
   LoadingState, 
   ErrorState 
 } from '../components/ui';
@@ -216,6 +217,8 @@ export const VerificationResultPage = () => {
               <SourceList evidenceList={result.keyEvidence} />
             </Card>
           )}
+
+          <VerificationFeedback verificationId={result.verificationId} />
         </div>
       </div>
     </div>

@@ -11,7 +11,8 @@ export interface UrlCheckPayload {
 
 export interface FeedbackPayload {
   verificationId: string;
-  isAccurate: boolean;
+  rating?: number;
+  isAccurate?: boolean;
   comment?: string;
 }
 
