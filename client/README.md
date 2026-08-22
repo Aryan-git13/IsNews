@@ -1,32 +1,32 @@
-# React + TypeScript + Vite
+# TruthGuard AI — Frontend Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Modern React + TypeScript + Vite web client for TruthGuard AI multi-agent news verification.
 
-Currently, two official plugins are available:
+## Environment Configuration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The frontend relies on public environment variables. Create a `.env` file in the `client` root directory based on `.env.example`:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+cp .env.example .env
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Public Variables
+
+| Variable | Description | Default |
+| --- | --- | --- |
+| `VITE_API_BASE_URL` | Base REST API URL of the backend server | `http://localhost:5000` |
+
+> ⚠️ **Security Warning**: Only variables starting with `VITE_` are bundled into the frontend client. Never store secret provider keys (e.g. `OPENAI_API_KEY`, `GEMINI_API_KEY`) in the frontend application or `.env` files inside `client/`.
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Production build
+npm run build
+```
