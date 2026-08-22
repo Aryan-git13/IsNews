@@ -17,15 +17,25 @@ apiClient.interceptors.response.use(
   (error: AxiosError<{ message?: string; error?: string }>) => {
     let errorMessage = 'An unexpected network error occurred.';
 
-    if (error.response) {
+    if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+      errorMessage = 'Verification request timed out. The AI consensus engine took longer than expected. Please retry.';
+    } else if (error.response) {
       // Server responded with an error status code (4xx, 5xx)
-      errorMessage = error.response.data?.message || error.response.data?.error || `Request failed with status ${error.response.status}`;
+      const serverMsg = error.response.data?.message || error.response.data?.error;
+      if (serverMsg) {
+        // Sanitize stack traces if accidentally present
+        errorMessage = serverMsg.includes('at ') || serverMsg.includes('Error:')
+          ? 'Server encountered an internal processing error.'
+          : serverMsg;
+      } else {
+        errorMessage = `Server responded with status ${error.response.status}. Please try again later.`;
+      }
     } else if (error.request) {
-      // Request was made but no response was received
-      errorMessage = 'No response received from the server. Please check backend connection.';
+      // Request was made but no response was received (network failure)
+      errorMessage = 'Network connection failed. Unable to reach backend verification services.';
     } else {
       // Error setting up the request
-      errorMessage = error.message;
+      errorMessage = error.message || 'Failed to send verification request.';
     }
 
     return Promise.reject(new Error(errorMessage));

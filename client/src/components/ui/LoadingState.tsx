@@ -12,10 +12,11 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
   submessage = 'Analyzing claims with neural NLP and web consensus engines.',
 }) => {
   return (
-    <div className="state-container loading-state-container">
-      <Loader2 className="spinner-icon animate-spin" size={40} />
+    <div className="state-container loading-state-container" role="status" aria-live="polite">
+      <Loader2 className="spinner-icon animate-spin" size={40} aria-hidden="true" />
       <h3 className="state-title">{message}</h3>
       {submessage && <p className="state-description">{submessage}</p>}
+      <span className="sr-only">{message}. {submessage}</span>
     </div>
   );
 };

@@ -60,6 +60,9 @@ export const SourceList = ({
           const relevanceScore = typeof item.relevance === 'number' ? Math.round(item.relevance * 100) : null;
           const category = getCategoryLabel(item.sourceType || item.source, item.url);
 
+          const isSafeUrl = item.url && (item.url.startsWith('http://') || item.url.startsWith('https://'));
+          const safeHref = isSafeUrl ? item.url : '#';
+
           return (
             <li
               key={idx}
@@ -74,7 +77,7 @@ export const SourceList = ({
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <div style={{ flex: '1 1 240px' }}>
                   <a
-                    href={item.url}
+                    href={safeHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="source-link"

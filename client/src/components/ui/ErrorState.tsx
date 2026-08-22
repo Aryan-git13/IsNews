@@ -15,8 +15,8 @@ export const ErrorState: React.FC<ErrorStateProps> = ({
   onRetry,
 }) => {
   return (
-    <div className="state-container error-state-container">
-      <AlertCircle className="error-icon" size={44} />
+    <div className="state-container error-state-container" role="alert" aria-live="assertive">
+      <AlertCircle className="error-icon" size={44} aria-hidden="true" />
       <h3 className="state-title">{title}</h3>
       <p className="state-description">{message}</p>
       {onRetry && (

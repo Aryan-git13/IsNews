@@ -138,7 +138,7 @@ export const VerificationResultPage = () => {
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
-                justify-content: 'center',
+                justifyContent: 'center',
                 gap: '0.5rem',
                 fontSize: '0.8rem',
                 color: 'var(--color-text-dim)',
