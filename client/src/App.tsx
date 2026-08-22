@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
+import { AppLayout } from './components/AppLayout';
 import { HomePage } from './pages/HomePage';
 import { TextCheckPage } from './pages/TextCheckPage';
 import { UrlCheckPage } from './pages/UrlCheckPage';
@@ -13,8 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 export const App: React.FC = () => {
   return (
     <Router>
-      <Navbar />
-      <main className="main-content">
+      <AppLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/verify/text" element={<TextCheckPage />} />
@@ -26,7 +25,7 @@ export const App: React.FC = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </main>
+      </AppLayout>
     </Router>
   );
 };
